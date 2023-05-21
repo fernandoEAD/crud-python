@@ -11,16 +11,16 @@ import sqlite3 as lite
 ########## Criando conexão ##########
 con = lite.connect('dados.db')
 
-lista = ['Joao Futi Muanda', 'joao@mail.com', 123456789, "18/19/2010", "Normal", 'gostaria de o consultar pessoalmente']
+lista = ['05283839333', 'Joao Futi Muanda', 'masc', 123456789, "18", "19/02/1994", '10', '8', '9']
 
 ########## Inserir informações ##########
 def inserir_info(i):
     with con:
           cur = con.cursor()
-          query = "INSERT INTO formulario (nome, email, telefone, dia_em, estado, assunto) VALUES (?, ?, ?, ?, ?, ?)"
+          query = "INSERT INTO formulario (cpf, nome, sexo, idade, nasc, av1, av2, media) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
           cur.execute(query,i)
 
-inserir_info(lista)
+# inserir_info(lista)
 
 ######### Acessar informações ##########
 def mostrar_info():
@@ -39,7 +39,7 @@ def mostrar_info():
 def atualizar_info(i):
     with con:
         cur = con.cursor()
-        query = "UPDATE formulario SET nome =?, email=?, telefone=?, dia_em=?, estado=?, assunto=? WHERE id=?"
+        query = "UPDATE formulario SET cpf =?, nome =?, sexo=?, idade=?, nasc=?, av1=?, av2=?, media=? WHERE cpf=?"
         cur.execute(query,i)
 
 
@@ -47,5 +47,5 @@ def atualizar_info(i):
 def deletar_info(i):
     with con:
           cur = con.cursor()
-          query = "DELETE From formulario WHERE id=?"
+          query = "DELETE From formulario WHERE cpf=?"
           cur.execute(query,i)
